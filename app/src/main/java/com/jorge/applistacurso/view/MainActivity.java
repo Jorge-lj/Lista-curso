@@ -22,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
     Pessoa outraPessoa;
 
-    EditText primeiroNome ;
-    EditText segundoNome ;
-    EditText curso_desejado ;
-    EditText telefone_contato ;
+    EditText primeiroNome;
+    EditText segundoNome;
+    EditText curso_desejado;
+    EditText telefone_contato;
 
     Button limpar;
-    Button salvar ;
-    Button finalizar ;
+    Button salvar;
+    Button finalizar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +48,6 @@ public class MainActivity extends AppCompatActivity {
         pessoa.setSobrenome("Leal");
         pessoa.setCurso_desejado("Tds");
         pessoa.setTelefone_de_contato("(34)91234-5678");
-
-        outraPessoa = new Pessoa();
-
-//        pessoa.setPrimeiro_nome("Luffy");
-//        pessoa.setSobrenome("Monkey");
-//        pessoa.setCurso_desejado("Rei dos piratas");
-//        pessoa.setTelefone_de_contato("Denden mushi");
 
         primeiroNome = findViewById(R.id.editTextText_primeiroNome);
         segundoNome = findViewById(R.id.editTextText_SegundoNome);
@@ -98,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-        
+
     }
 
 }
