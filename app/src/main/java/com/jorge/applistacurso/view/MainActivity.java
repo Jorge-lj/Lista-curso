@@ -22,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
     Pessoa pessoa;
     PessoaController controller;
 
-    EditText primeiroNome ;
-    EditText segundoNome ;
-    EditText curso_desejado ;
-    EditText telefone_contato ;
+    EditText primeiroNome;
+    EditText segundoNome;
+    EditText curso_desejado;
+    EditText telefone_contato;
 
     Button limpar;
-    Button salvar ;
-    Button finalizar ;
+    Button salvar;
+    Button finalizar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
