@@ -1,7 +1,6 @@
 package com.jorge.applistacurso.view;
 
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +20,6 @@ import com.jorge.applistacurso.model.Pessoa;
 public class MainActivity extends AppCompatActivity {
 
     Pessoa pessoa;
-    public static final String NOME_PREFERENCES ="pref_listaVip";
-    SharedPreferences preferences;
     PessoaController controller;
 
     EditText primeiroNome;
@@ -44,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        preferences = getSharedPreferences(NOME_PREFERENCES,0);
-
-        SharedPreferences.Editor listaVip = preferences.edit();
-
         controller = new PessoaController();
 
         controller.toString();
@@ -73,14 +66,6 @@ public class MainActivity extends AppCompatActivity {
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Pessoa pessoa = new Pessoa(primeiroNome.getText().toString(), segundoNome.getText().toString(), curso_desejado.getText().toString(), telefone_contato.getText().toString());
-
-                listaVip.putString("Primeiro Nome: ", pessoa.getPrimeiro_nome());
-                listaVip.putString("Sobrenome: ", pessoa.getSobrenome());
-                listaVip.putString("Curso desejado: ", pessoa.getCurso_desejado());
-                listaVip.putString("Telefone de contato: ", pessoa.getTelefone_de_contato());
-                listaVip.apply();
-
                 controller.salvar(primeiroNome, segundoNome, curso_desejado, telefone_contato);
                 Toast.makeText(MainActivity.this, "Dados salvos!" + pessoa.toString(), Toast.LENGTH_SHORT).show();
             }
