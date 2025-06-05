@@ -7,6 +7,8 @@ import com.jorge.applistacurso.model.Pessoa;
 
 public class PessoaController {
 
+    Pessoa pessoa;
+
     @NonNull
     @Override
     public String toString() {
@@ -14,8 +16,7 @@ public class PessoaController {
         return super.toString();
     }
 
-    public void salvar(EditText primeiroNome, EditText segundoNome, EditText curso_desejado, EditText telefone_contato) {
-        Pessoa pessoa = new Pessoa(primeiroNome.getText().toString(), segundoNome.getText().toString(), curso_desejado.getText().toString(), telefone_contato.getText().toString());
+    public void salvar(Pessoa pessoa, EditText primeiroNome, EditText segundoNome, EditText curso_desejado, EditText telefone_contato) {
         Log.d ("MVC_controller", "Dados salvos!" + pessoa.toString());
     }
 
