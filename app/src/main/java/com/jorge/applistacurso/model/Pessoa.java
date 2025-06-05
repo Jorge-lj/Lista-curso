@@ -15,21 +15,21 @@ public class Pessoa {
     public Pessoa() {
     }
 
-//    public Pessoa(String primeiro_nome, String sobrenome, String curso_desejado, String telefone_de_contato) {
-//        this.primeiro_nome = primeiro_nome;
-//        this.sobrenome = sobrenome;
-//        this.curso_desejado = curso_desejado;
-//        this.telefone_de_contato = telefone_de_contato;
-//    }
+    public Pessoa(String primeiro_nome, String sobrenome, String curso_desejado, String telefone_de_contato) {
+        this.primeiro_nome = primeiro_nome;
+        this.sobrenome = sobrenome;
+        this.curso_desejado = curso_desejado;
+        this.telefone_de_contato = telefone_de_contato;
+    }
 
     //GET AND SETTERS
 
-    public String getCurso_desejado() {
-        return curso_desejado;
+    public String getPrimeiro_nome() {
+        return primeiro_nome;
     }
 
-    public void setCurso_desejado(String curso_desejado) {
-        this.curso_desejado = curso_desejado;
+    public void setPrimeiro_nome(String primeiro_nome) {
+        this.primeiro_nome = primeiro_nome;
     }
 
     public String getSobrenome() {
@@ -40,32 +40,32 @@ public class Pessoa {
         this.sobrenome = sobrenome;
     }
 
-    public String getPrimeiro_nome() {
-        return primeiro_nome;
+    public String getCurso_desejado() {
+        return curso_desejado;
     }
 
-    public void setPrimeiro_nome(String primeiro_nome) {
-        this.primeiro_nome = primeiro_nome;
+    public void setCurso_desejado(String curso_desejado) {
+        this.curso_desejado = curso_desejado;
     }
 
     public String getTelefone_de_contato() {
         return telefone_de_contato;
     }
+
     public void setTelefone_de_contato(String telefone_de_contato) {
         this.telefone_de_contato = telefone_de_contato;
     }
+
 
     // TOSTRING
 
     @Override
     public String toString() {
         return "Pessoa{" +
-                "curo_desejado='" + curso_desejado + '\'' +
-                ", pessoaController=" + pessoaController +
-                ", primeiro_nome='" + primeiro_nome + '\'' +
-                ", sobrenome='" + sobrenome + '\'' +
-                ", telefone_de_contato='" + telefone_de_contato + '\'' +
+                "Primeiro nome: '" + primeiro_nome + '\'' +
+                ", Sobrenome: '" + sobrenome + '\'' +
+                ", Curso_desejado: '" + curso_desejado + '\'' +
+                ", Telefone de contato: '" + telefone_de_contato + '\'' +
                 '}';
     }
-
 }
