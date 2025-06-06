@@ -18,6 +18,7 @@ public class PessoaController {
 
     public void salvar(Pessoa pessoa, EditText primeiroNome, EditText segundoNome, EditText curso_desejado, EditText telefone_contato) {
         Log.d ("MVC_controller", "Dados salvos!" + pessoa.toString());
+        limpar(primeiroNome, segundoNome, curso_desejado, telefone_contato);
     }
 
     public void limpar(EditText primeiroNome, EditText segundoNome, EditText curso_desejado, EditText telefone_contato) {
@@ -26,6 +27,7 @@ public class PessoaController {
         curso_desejado.setText("");
         telefone_contato.setText("");
         Log.d ("MVC_controller", "Dados limpos!");
+
     }
 
     public void finalizar(Pessoa pessoa) {
