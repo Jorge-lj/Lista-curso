@@ -21,6 +21,9 @@ import com.jorge.applistacurso.model.Pessoa;
 public class MainActivity extends AppCompatActivity {
 
     Pessoa pessoa;
+
+    SharedPreferences.Editor listaVip;
+
     public static final String NOME_PREFERENCES ="pref_listaVip";
     SharedPreferences preferences;
     PessoaController controller;
@@ -46,7 +49,14 @@ public class MainActivity extends AppCompatActivity {
         });
         preferences = getSharedPreferences(NOME_PREFERENCES,0);
 
-        SharedPreferences.Editor listaVip = preferences.edit();
+        listaVip = preferences.edit();
+
+        pessoa = new Pessoa();
+
+        pessoa.setPrimeiro_nome(preferences.getString("Primeiro Nome: ", "NA"));
+        pessoa.setSobrenome(preferences.getString("Sobrenome: ", "NA"));
+        pessoa.setCurso_desejado(preferences.getString("Curso desejado: ", "NA"));
+        pessoa.setTelefone_de_contato(preferences.getString("Telefone de contato: ", "NA"));
 
         controller = new PessoaController();
 
@@ -61,12 +71,19 @@ public class MainActivity extends AppCompatActivity {
         salvar = findViewById(R.id.button_Salvar);
         finalizar = findViewById(R.id.button_Finalizar);
 
+        primeiroNome.setText(pessoa.getPrimeiro_nome());
+        segundoNome.setText(pessoa.getSobrenome());
+        curso_desejado.setText(pessoa.getCurso_desejado());
+        telefone_contato.setText(pessoa.getTelefone_de_contato());
 
         limpar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 controller.limpar(primeiroNome, segundoNome, curso_desejado, telefone_contato);
                 Toast.makeText(MainActivity.this, "Dados limpos!", Toast.LENGTH_SHORT).show();
+
+                listaVip.clear();
+                listaVip.apply();
             }
         });
 
