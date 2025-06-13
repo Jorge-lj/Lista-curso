@@ -1,11 +1,12 @@
 package com.jorge.applistacurso.view;
 
-
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,102 +16,112 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.jorge.applistacurso.R;
+import com.jorge.applistacurso.controller.CursoController;
 import com.jorge.applistacurso.controller.PessoaController;
 import com.jorge.applistacurso.model.Pessoa;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     Pessoa pessoa;
-
-    SharedPreferences.Editor listaVip;
-
-    public static final String NOME_PREFERENCES ="pref_listaVip";
-    SharedPreferences preferences;
     PessoaController controller;
+    CursoController controllerCurso;
 
     EditText primeiroNome;
     EditText segundoNome;
-    EditText curso_desejado;
     EditText telefone_contato;
+
+    Spinner spinner;
 
     Button limpar;
     Button salvar;
     Button finalizar;
+
+    List<String> nomeCurso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        preferences = getSharedPreferences(NOME_PREFERENCES,0);
-
-        listaVip = preferences.edit();
 
         pessoa = new Pessoa();
+        controller = new PessoaController(this);
+        controllerCurso = new CursoController();
 
-        pessoa.setPrimeiro_nome(preferences.getString("Primeiro Nome: ", "NA"));
-        pessoa.setSobrenome(preferences.getString("Sobrenome: ", "NA"));
-        pessoa.setCurso_desejado(preferences.getString("Curso desejado: ", "NA"));
-        pessoa.setTelefone_de_contato(preferences.getString("Telefone de contato: ", "NA"));
+        // Buscar dados salvos
+        controller.buscar(pessoa);
 
-        controller = new PessoaController();
-
-        controller.toString();
+        nomeCurso = controllerCurso.dadosSpinner();
 
         primeiroNome = findViewById(R.id.editTextText_primeiroNome);
         segundoNome = findViewById(R.id.editTextText_SegundoNome);
-        curso_desejado = findViewById(R.id.editTextText_Curso);
         telefone_contato = findViewById(R.id.editTextText_Telefone);
-
+        spinner = findViewById(R.id.spinner);
         limpar = findViewById(R.id.button_Limpar);
         salvar = findViewById(R.id.button_Salvar);
         finalizar = findViewById(R.id.button_Finalizar);
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item,
+                nomeCurso);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        if (pessoa.getCurso_desejado() != null && !pessoa.getCurso_desejado().isEmpty()) {
+            int posicao = adapter.getPosition(pessoa.getCurso_desejado());
+            if (posicao >= 0) {
+                spinner.setSelection(posicao);
+            }
+        }
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // Lógica ao selecionar item
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
         primeiroNome.setText(pessoa.getPrimeiro_nome());
         segundoNome.setText(pessoa.getSobrenome());
-        curso_desejado.setText(pessoa.getCurso_desejado());
         telefone_contato.setText(pessoa.getTelefone_de_contato());
 
-        limpar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                controller.limpar(primeiroNome, segundoNome, curso_desejado, telefone_contato);
-                Toast.makeText(MainActivity.this, "Dados limpos!", Toast.LENGTH_SHORT).show();
-
-                listaVip.clear();
-                listaVip.apply();
-            }
+        limpar.setOnClickListener(view -> {
+            primeiroNome.setText("");
+            segundoNome.setText("");
+            telefone_contato.setText("");
+            spinner.setSelection(0);
+            controller.limpar(pessoa);
+            Toast.makeText(MainActivity.this, "Dados limpos!", Toast.LENGTH_SHORT).show();
         });
 
-        salvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Pessoa pessoa = new Pessoa(primeiroNome.getText().toString(), segundoNome.getText().toString(), curso_desejado.getText().toString(), telefone_contato.getText().toString());
+        salvar.setOnClickListener(view -> {
+            pessoa.setPrimeiro_nome(primeiroNome.getText().toString());
+            pessoa.setSobrenome(segundoNome.getText().toString());
+            pessoa.setCurso_desejado(spinner.getSelectedItem().toString());
+            pessoa.setTelefone_de_contato(telefone_contato.getText().toString());
 
-                listaVip.putString("Primeiro Nome: ", pessoa.getPrimeiro_nome());
-                listaVip.putString("Sobrenome: ", pessoa.getSobrenome());
-                listaVip.putString("Curso desejado: ", pessoa.getCurso_desejado());
-                listaVip.putString("Telefone de contato: ", pessoa.getTelefone_de_contato());
-                listaVip.apply();
-
-                controller.salvar(pessoa, primeiroNome, segundoNome, curso_desejado, telefone_contato);
-                Toast.makeText(MainActivity.this, "Dados salvos!" + pessoa.toString(), Toast.LENGTH_SHORT).show();
-            }
+            controller.salvar(pessoa);
+            Toast.makeText(MainActivity.this, "Dados salvos!\n" + pessoa.toString(), Toast.LENGTH_SHORT).show();
         });
 
-        finalizar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                controller.finalizar(pessoa);
-                Toast.makeText(MainActivity.this, "Volte sempre!", Toast.LENGTH_SHORT).show();
-                finish();
-            }
+        finalizar.setOnClickListener(view -> {
+            controller.finalizar();
+            Toast.makeText(MainActivity.this, "Volte sempre!", Toast.LENGTH_SHORT).show();
+            finish();
         });
+
+        controller.toString();
     }
-
 }
