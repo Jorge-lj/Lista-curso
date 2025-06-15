@@ -1,16 +1,11 @@
 package com.jorge.applistacurso.model;
 
-import com.jorge.applistacurso.controller.PessoaController;
-
 public class Pessoa {
 
-    private PessoaController pessoaController;
     private String primeiro_nome;
     private String sobrenome;
     private String curso_desejado;
     private String telefone_de_contato;
-
-    //CONSTRUTORES
 
     public Pessoa() {
     }
@@ -21,8 +16,6 @@ public class Pessoa {
         this.curso_desejado = curso_desejado;
         this.telefone_de_contato = telefone_de_contato;
     }
-
-    //GET AND SETTERS
 
     public String getPrimeiro_nome() {
         return primeiro_nome;
@@ -56,12 +49,9 @@ public class Pessoa {
         this.telefone_de_contato = telefone_de_contato;
     }
 
-
-    // TOSTRING
-
     @Override
     public String toString() {
-        return '\n' +"Pessoa" + '\n' +
+        return '\n' + "Pessoa" + '\n' +
                 "Primeiro Nome: '" + primeiro_nome + '\'' + '\n' +
                 "Sobrenome: '" + sobrenome + '\'' + '\n' +
                 "Curso Desejado: '" + curso_desejado + '\'' + '\n' +
