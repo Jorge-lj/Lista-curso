@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         controller = new PessoaController(this);
         controllerCurso = new CursoController();
 
-        // Buscar dados salvos
         controller.buscar(pessoa);
 
         nomeCurso = controllerCurso.dadosSpinner();
@@ -89,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            public void onNothingSelected(AdapterView<?> adapterView) 
+
             }
         });
 
@@ -113,7 +113,9 @@ public class MainActivity extends AppCompatActivity {
             pessoa.setTelefone_de_contato(telefone_contato.getText().toString());
 
             controller.salvar(pessoa);
-            Toast.makeText(MainActivity.this, "Dados salvos!\n" + pessoa.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Dados salvos!" + pessoa.toString(), Toast.LENGTH_SHORT).show();
+        }
+
         });
 
         finalizar.setOnClickListener(view -> {

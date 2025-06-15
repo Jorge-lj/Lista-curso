@@ -19,6 +19,15 @@ public class PessoaController {
         listaVip = preferences.edit();
     }
 
+    SharedPreferences.Editor listaVip;
+    public static final String NOME_PREFERENCES ="pref_listaVip";
+    SharedPreferences preferences;
+
+    public PessoaController (MainActivity mainActivity){
+        preferences = mainActivity.getSharedPreferences(NOME_PREFERENCES,0);
+        listaVip = preferences.edit();
+    }
+
     @NonNull
     @Override
     public String toString() {
@@ -47,6 +56,10 @@ public class PessoaController {
         pessoa.setSobrenome(preferences.getString("sobrenome", ""));
         pessoa.setCurso_desejado(preferences.getString("curso_desejado", ""));
         pessoa.setTelefone_de_contato(preferences.getString("telefone_contato", ""));
+
+        Log.d ("MVC_controller", "Dados limpos!");
+    }
+
         return pessoa;
     }
 
