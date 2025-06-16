@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".view.MainActivity">
 
     <TextView
@@ -14,110 +16,75 @@
         android:layout_marginTop="52dp"
         android:text="@string/txt_aplicativo_lista_vip_curso_android"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextText_primeiroNome"
+        android:layout_width="375dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:hint="@string/txt_hint_edit_primeiro_nome"
+        android:inputType="text"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/editTextText_SegundoNome"
+        android:layout_width="375dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/txt_hint_edit_sobrenome"
+        android:inputType="text"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/editTextText_Telefone"
-        android:layout_width="0dp"
+        android:layout_width="375dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/txt_hint_edit_telefone_de_contato"
         android:inputType="text"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText_SegundoNome" />
+        android:textSize="16sp" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="375dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText_Telefone" />
+        android:layout_marginTop="20dp"
+        android:layout_margin="16dp" />
 
-    <Button
-        android:id="@+id/button_Limpar"
-        android:layout_width="153dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="136dp"
-        android:text="@string/txt_button_limpar"
-        android:textColorLink="#673AB7"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText_Telefone"
-        app:layout_constraintVertical_bias="1.0" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingVertical="0dp"
+        android:paddingTop="0dp">
 
-    <Button
-        android:id="@+id/button_Salvar"
-        android:layout_width="158dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="136dp"
-        android:text="@string/txt_button_salvar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.936"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText_Telefone"
-        app:layout_constraintVertical_bias="1.0" />
+        <Button
+            android:id="@+id/button_Limpar"
+            android:layout_width="150dp"
+            android:layout_height="47dp"
+            android:layout_margin="20dp"
+            android:text="@string/txt_button_limpar" />
+
+        <Button
+            android:id="@+id/button_Salvar"
+            android:layout_width="150dp"
+            android:layout_height="47dp"
+            android:layout_margin="20dp"
+            android:text="@string/txt_button_salvar" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_Finalizar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/txt_button_finalizar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText_Telefone"
-        app:layout_constraintVertical_bias="0.835" />
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/txt_button_finalizar" />
 
-    <EditText
-        android:id="@+id/editTextText_SegundoNome"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/txt_hint_edit_sobrenome"
-        android:inputType="text"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText_primeiroNome" />
-
-    <EditText
-        android:id="@+id/editTextText_primeiroNome"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="@string/txt_hint_edit_primeiro_nome"
-        android:inputType="text"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

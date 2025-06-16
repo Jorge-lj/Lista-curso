@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         controller = new PessoaController(this);
         controllerCurso = new CursoController();
 
-        // Buscar dados salvos
         controller.buscar(pessoa);
 
         nomeCurso = controllerCurso.dadosSpinner();
@@ -64,11 +63,18 @@ public class MainActivity extends AppCompatActivity {
         primeiroNome = findViewById(R.id.editTextText_primeiroNome);
         segundoNome = findViewById(R.id.editTextText_SegundoNome);
         telefone_contato = findViewById(R.id.editTextText_Telefone);
+
         spinner = findViewById(R.id.spinner);
+
         limpar = findViewById(R.id.button_Limpar);
         salvar = findViewById(R.id.button_Salvar);
         finalizar = findViewById(R.id.button_Finalizar);
 
+        primeiroNome.setText(pessoa.getPrimeiro_nome());
+        segundoNome.setText(pessoa.getSobrenome());
+        telefone_contato.setText(pessoa.getTelefone_de_contato());
+
+    //SPNER
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 nomeCurso);
@@ -92,10 +98,6 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
-        primeiroNome.setText(pessoa.getPrimeiro_nome());
-        segundoNome.setText(pessoa.getSobrenome());
-        telefone_contato.setText(pessoa.getTelefone_de_contato());
 
         limpar.setOnClickListener(view -> {
             primeiroNome.setText("");
